@@ -13,7 +13,7 @@ class UserController {
 
         users.findById(id, (err, users) => {
             if(err) {
-                res.status(400).send({message: `${err.message} - User id not found!`})
+                res.status(400).send({message: `404 - User id not found! - ${err.message}`})
                 } else {
                 res.status(200).send(users);
                 }
@@ -40,7 +40,7 @@ class UserController {
             if(!err) {
                 res.status(200).send({message: 'User updated successfully!'})
             } else {
-                res.status(500).send({message: err.message})
+                res.status(500).send({message: `404 - Update failed! - ${err.message}`})
             }
         })
     }
@@ -50,7 +50,7 @@ class UserController {
 
         users.findByIdAndDelete(id, (err) => {
             if(!err){
-                res.status(200).send({message: 'User removed successfully'})
+                res.status(200).send({message: '204 - User removed successfully'})
             } else {
                 res.status(500).send({message: err.message})
             }
